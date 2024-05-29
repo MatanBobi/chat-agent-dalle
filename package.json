@@ -5,10 +5,17 @@
   "description": "",
   "version": "0.0.1",
   "engines": {
-    "vscode": "^1.84.0"
+    "vscode": "^1.90.0"
   },
+  "extensionDependencies": [
+    "github.copilot-chat"
+  ],
   "categories": [
+    "Chat",
     "Other"
+  ],
+  "extensionKind": [
+    "ui"
   ],
   "activationEvents": [
     "onStartupFinished"
@@ -17,20 +24,18 @@
     "type": "git",
     "url": "https://github.com/roblourens/chat-agent-dalle"
   },
-  "enabledApiProposals": [
-    "chatParticipant",
-    "languageModels"
-  ],
   "main": "./dist/extension.js",
   "contributes": {
     "chatParticipants": [
       {
-        "name": "dall-e",
+        "id": "dalle.chat",
+        "name": "DALL-E",
         "description": "Use Dall-E",
         "commands": [
-          { "name": "affirmation", "description": "Sometimes we need a context-aware affirmation from a happy cute animal!" },
-          { "name": "flow", "description": "Visualize the code flow based for the current code" },
-          { "name": "render", "description": "Preview the current code as website rendering" }
+          {
+            "name": "random",
+            "description": "Randomize an image"
+          }
         ]
       }
     ],
@@ -38,11 +43,11 @@
       {
         "title": "Dall-E Chat Agent",
         "properties": {
-          "roblourens.chat-agent-dalle.azureEndpoint": {
+          "dalle.chat.azureEndpoint": {
             "type": "string",
             "description": "The azure endpoint to make AI requests to, to generate images"
           },
-          "roblourens.chat-agent-dalle.deploymentName": {
+          "dalle.chat.deploymentName": {
             "type": "string",
             "description": "The deployment name of the Dall-E model to use"
           }
